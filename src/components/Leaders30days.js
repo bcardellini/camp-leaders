@@ -1,8 +1,8 @@
 import React from "react";
-require('../sass/camp-leaders.scss');
 
 
-export default class Previewer extends React.Component {
+
+export default class Leaders30Days extends React.Component {
 
   constructor () {
     super();
@@ -28,7 +28,7 @@ export default class Previewer extends React.Component {
     return (
       <div>
 
-            <h2>leaderboard</h2>
+            <h2>30 day leaders</h2>
 
 
       </div>
