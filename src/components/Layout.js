@@ -23,7 +23,7 @@ export default class Layout extends React.Component {
 
     return (
       <div class="container">
-        <Header title={title} />
+        <Header title={title} router={this.props.router}/>
         {links}
         {this.props.children}
       </div>
