@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-export default class Leaders30Days extends React.Component {
+export default class Leaders extends React.Component {
 
   constructor () {
     super();
@@ -23,7 +23,7 @@ export default class Leaders30Days extends React.Component {
 
 
   render() {
-
+    console.log(this.props);  
 
     return (
       <div>

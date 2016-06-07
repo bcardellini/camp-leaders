@@ -1,16 +1,13 @@
 import React from "react";
 import { Link } from "react-router";
 
-import Header from "./Header";
-
 require('../sass/camp-leaders.scss');
 
-export default class Layout extends React.Component {
+export default class Navigation extends React.Component {
 
   render() {
-    const title = "Camp Leaders";
 
-    const links = this.props.route.sorts.map(
+    const links = this.props.sorts.map(
       (sortable, i) => {
         var active = this.props.router.isActive(sortable);
         var descending = (this.props.location.query.sort_direction === "descending");
@@ -22,10 +19,8 @@ export default class Layout extends React.Component {
     )
 
     return (
-      <div class="container">
-        <Header title={title} />
+      <div className="sortLinks">
         {links}
-        {this.props.children}
       </div>
     );
   }

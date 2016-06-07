@@ -31,7 +31,6 @@
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "flux": "^2.1.1",
-    "history": "^3.0.0",
     "marked": "^0.3.5",
     "postcss": "^5.0.21",
     "postcss-loader": "^0.9.1",
