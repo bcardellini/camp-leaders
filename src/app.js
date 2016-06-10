@@ -6,7 +6,7 @@ import Layout from "./components/Layout";
 import Navigation from "./components/Layout";
 import Leaders from "./components/Leaders";
 
-const sorts = ['alltime', '30days'];
+const sorts = ['alltime', 'recent'];
 const sortRouts = sorts.map(
   (sortable,i) => <Route key={i} path={sortable} component={Leaders}></Route>
 );
