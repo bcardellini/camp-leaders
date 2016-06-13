@@ -14,16 +14,21 @@ export default class Leaders extends React.Component {
 
     const entries = userList.map(
       (user, i) =>
-        <li key={i}>
-          {user.username} - {user.alltime} - {user.recent}
-        </li>
+        <tr key={i}>
+          <td className="userName">{user.username}</td>
+          <td className="pic"><img src={user.img} alt="profile picture"/></td>
+          <td className="recent">{user.recent}</td>
+          <td className="alltime">{user.alltime}</td>
+        </tr>
     );
     //console.log(entries);
 
     return (
-      <ul className={"sort-"+sortProp}>
-        {entries}
-      </ul>
+      <table className={"table sort-"+sortProp}>
+        <tbody>
+          {entries}
+        </tbody>
+      </table>
     );
   }
 }

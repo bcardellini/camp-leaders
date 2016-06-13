@@ -45,7 +45,7 @@ export default class Layout extends React.Component {
     var leadersWithProps = React.cloneElement(this.props.children, {users:this.state.users, sorts:sorts});
 
     return (
-      <div class="container">
+      <div class="leaderboard container">
         <Header title={title} router={router}/>
         <Navigation sorts={sorts} router={router} query={query} path={path}/>
         {leadersWithProps}

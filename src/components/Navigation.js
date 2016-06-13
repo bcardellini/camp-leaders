@@ -16,7 +16,6 @@ export default class Navigation extends React.Component {
         var isActiveRoute = router.isActive(sortable);
         var active = isActiveRoute || ( i === 0 && path === "/");  // treat index as default route
         var descending = (typeof query.sort_direction === "undefined" || query.sort_direction === "descending");
-        console.log(`activeRoute:${isActiveRoute} i:${i} path:${path} descending:${descending}`);
 
         var sortDirection = ( active && descending ) ? "ascending" : "descending";
         var activeClass = ( active ) ? "active" : "";
