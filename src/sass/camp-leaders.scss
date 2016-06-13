@@ -1,0 +1,110 @@
+$primary: #425a92;
+
+@mixin stat-width {
+  width:20%;
+  min-width:80px;
+  text-align:right;
+}
+body {
+  background-color:#f9f7f5;
+}
+.navbar {
+  min-height:50px;
+  padding:10px 0 5px;
+  border-radius:0;
+}
+.fcc-logo {
+  width:auto;
+  height:40px;
+}
+
+.leaderboard {
+  @media (min-width:992px) {
+    font-size:24px;
+  }
+  .subhead {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.9em;
+    display: block;
+    margin: -.75em 0 -.25em;
+    padding: 0;
+    width:60%;
+  }
+  table {
+    background:white;
+    box-shadow: 0 20px 20px rgba(0,0,0,0.1);
+  }
+  tfoot {
+    display:none;
+  }
+  .pre-load tfoot {
+    display:block;
+  }
+  tr:first-child td{
+    border-top:none;
+  }
+
+  td {
+    &.pic {
+      text-align:left;
+      img {
+        height:4em;
+        width:auto;
+      }
+    }
+    &.username a {
+      text-transform: uppercase;
+      padding-left:0.5em;
+    }
+    &.recent,
+    &.alltime {
+      @include stat-width;
+      min-width:50px;
+      padding-right:1em;
+    }
+  }
+  tbody>tr>td {
+    vertical-align:middle;  //override
+  }
+  .nav-tabs>li.active>a {
+    cursor:pointer;
+    color:$primary;
+  }
+
+  table.sort-recent td.recent,
+  table.sort-alltime td.alltime {
+    font-size:1.5em;
+    font-weight:500;
+    color:$primary;
+  }
+
+  .sortLinks li {
+    float:right;
+    position:relative;
+    @include stat-width;
+  }
+  //.sortLinks.ascending li.active:hover:after,
+  .sortLinks li:after {
+    content: "";
+    position: absolute;
+    height: 1em;
+    box-sizing: border-box;
+    border-top: 1em solid #aaa;
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    border-bottom: 1em solid transparent;
+    left: 10%;
+    top: 1.2em;
+    transition: border-color 0.5s, top 0.5s;
+    pointer-events:none;
+  }
+  //.sortLinks.descending li.active:hover:after,
+  .sortLinks.ascending li.active:after {
+    border-top:1em solid transparent;
+    border-bottom:1em solid #aaa;
+    top:0.2em;
+  }
+
+
+}

@@ -9,7 +9,8 @@ export default class Layout extends React.Component {
   constructor () {
     super();
     this.state = {
-      users:[]
+      users:[],
+      loaded:"pre-load"
     }
   }
 
@@ -31,7 +32,10 @@ export default class Layout extends React.Component {
   }
 
   loaded(response, dataName="data"){
-    this.setState({[dataName]:response});
+    this.setState({
+      [dataName]:response,
+      loaded:"loaded"
+    });
   }
 
   render() {
@@ -42,7 +46,7 @@ export default class Layout extends React.Component {
     const path = this.props.location.pathname;
 
     // pass state as prop to route child
-    var leadersWithProps = React.cloneElement(this.props.children, {users:this.state.users, sorts:sorts});
+    var leadersWithProps = React.cloneElement(this.props.children, {users:this.state.users, sorts:sorts, loaded:this.state.loaded});
 
     return (
       <div class="leaderboard container">
