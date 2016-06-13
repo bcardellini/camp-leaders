@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router";
 
 import Header from "./Header";
+import Navigation from "./Navigation";
 
 require('../sass/camp-leaders.scss');
 
@@ -16,6 +16,7 @@ export default class Layout extends React.Component {
   componentDidMount() {
     const dataURI="https://fcctop100.herokuapp.com/api/fccusers/top/recent";
 
+    // request data, fire handler when resolved
     this.dataReq = fetch(dataURI).then(function(response) {
       return response.json();
     }).then(function(responseJSON) {
@@ -30,32 +31,24 @@ export default class Layout extends React.Component {
   }
 
   loaded(response, dataName="data"){
-    console.log('loaded');
     this.setState({[dataName]:response});
   }
 
   render() {
     const title = "Camp Leaders";
+    const sorts = this.props.route.sorts;
+    const router = this.props.router;
+    const query = this.props.location.query;
+    const path = this.props.location.pathname;
 
-    const links = this.props.route.sorts.map(
-      (sortable, i) => {
-        var active = this.props.router.isActive(sortable);
-        var descending = (this.props.location.query.sort_direction === "descending");
-        var direction = ( active && descending ) ? "ascending" : "descending";
-        return (
-          <Link key={i} to={{ pathname: '/' + sortable, query: {sort_direction: direction} }} className="btn btn-default">{sortable}</Link>
-        );
-      }
-    )
-
-    var leadersWithProps = React.cloneElement(this.props.children, {users:this.state.users});
+    // pass state as prop to route child
+    var leadersWithProps = React.cloneElement(this.props.children, {users:this.state.users, sorts:sorts});
 
     return (
       <div class="container">
-        <Header title={title} router={this.props.router}/>
-        {links}
+        <Header title={title} router={router}/>
+        <Navigation sorts={sorts} router={router} query={query} path={path}/>
         {leadersWithProps}
-
       </div>
     );
   }

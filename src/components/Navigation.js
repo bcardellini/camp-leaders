@@ -6,22 +6,33 @@ require('../sass/camp-leaders.scss');
 export default class Navigation extends React.Component {
 
   render() {
+    const sorts = this.props.sorts;
+    const router = this.props.router;
+    const query = this.props.query;
+    const path = this.props.path;
 
-    const links = this.props.sorts.map(
-      (sortable, i) => {
-        var active = this.props.router.isActive(sortable);
-        var descending = (this.props.location.query.sort_direction === "descending");
-        var direction = ( active && descending ) ? "ascending" : "descending";
+    const links = sorts.map(
+      (sortable,i) => {
+        var isActiveRoute = router.isActive(sortable);
+        var active = isActiveRoute || ( i === 0 && path === "/");  // treat index as default route
+        var descending = (typeof query.sort_direction === "undefined" || query.sort_direction === "descending");
+        console.log(`activeRoute:${isActiveRoute} i:${i} path:${path} descending:${descending}`);
+
+        var sortDirection = ( active && descending ) ? "ascending" : "descending";
+        var activeClass = ( active ) ? "active" : "";
+
         return (
-          <Link key={i} to={{ pathname: '/' + sortable, query: {sort_direction: direction} }} className="btn btn-default">{sortable}</Link>
+          <li key={i} className={activeClass}>
+            <Link to={{ pathname: '/' + sortable, query: {sort_direction: sortDirection} }}>{sortable}</Link>
+          </li>
         );
       }
     )
 
     return (
-      <div className="sortLinks">
+      <ul className="sortLinks nav nav-tabs">
         {links}
-      </div>
+      </ul>
     );
   }
 }

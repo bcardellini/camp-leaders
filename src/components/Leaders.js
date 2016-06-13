@@ -7,22 +7,23 @@ export default class Leaders extends React.Component {
 
 
   render() {
-    const sortBy = this.props.route.path;
-    const direction = ( this.props.location.query.sort_direction === 'ascending' ) ? -1 : 1;
-
+    const sortProp = this.props.route.path || this.props.sorts[0];
+    const sortCoefficient = ( this.props.location.query.sort_direction === 'ascending' ) ? 1 : -1;
     const userList = this.props.users || [];
-    userList.sort( (a,b) => {return direction * (a[sortBy] - b[sortBy]) } );
+    userList.sort( (a,b) => {return sortCoefficient * (a[sortProp] - b[sortProp]) } );
 
     const entries = userList.map(
-      (user,i) => <div key={i}>{user.username} - {user.alltime} - {user.recent}</div>
+      (user, i) =>
+        <li key={i}>
+          {user.username} - {user.alltime} - {user.recent}
+        </li>
     );
     //console.log(entries);
 
     return (
-      <div>
-            <h2>{sortBy} leaders {direction}</h2>
-            {entries}
-      </div>
+      <ul className={"sort-"+sortProp}>
+        {entries}
+      </ul>
     );
   }
 }
