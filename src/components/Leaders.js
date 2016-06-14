@@ -32,9 +32,13 @@ export default class Leaders extends React.Component {
         <tfoot>
           <tr>
             <td>
-              <br/>
-              Loading...<br/>
-              <br/>
+              <div class="loading">
+                Loading...<br/>
+                <div class="loading-bar">
+                  <div class="air">
+                  </div>
+                </div>  
+              </div>
             </td>
           </tr>
         </tfoot>
