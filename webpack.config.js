@@ -35,8 +35,18 @@ module.exports = {
   postcss: function () {
       return [autoprefixer];
   },
-  plugins: debug ? [new ExtractTextPlugin('camp-leaders.css')] : [
+  plugins: debug ? [
     new ExtractTextPlugin('camp-leaders.css'),
+    new webpack.ProvidePlugin({
+      'Promise': 'exports?global.Promise!es6-promise',
+      'fetch': 'exports?self.fetch!whatwg-fetch'
+    })
+  ] : [
+    new ExtractTextPlugin('camp-leaders.css'),
+    new webpack.ProvidePlugin({
+      'Promise': 'exports?global.Promise!es6-promise',
+      'fetch': 'exports?self.fetch!whatwg-fetch'
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),

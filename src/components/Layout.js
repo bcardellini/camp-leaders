@@ -18,7 +18,7 @@ export default class Layout extends React.Component {
     const dataURI="https://fcctop100.herokuapp.com/api/fccusers/top/recent";
 
     // request data, fire handler when resolved
-    this.dataReq = fetch(dataURI).then(function(response) {
+    this.dataReq = fetch(dataURI, {mode:'cors'}).then(function(response) {
       return response.json();
     }).then(function(responseJSON) {
       this.loaded(responseJSON,"users");
